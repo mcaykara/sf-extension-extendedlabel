@@ -10,6 +10,8 @@ Smartface Extendedlabel can be installed via npm easily from our public npm repo
 - Run command `npm install` under the folder `scripts`
 
 ## How to use
+
+### Initialize
 ```javascript
 const Page = require("sf-core/ui/page");
 const extend = require("js-base/core/extend");
@@ -31,7 +33,7 @@ var Page1 = extend(Page)(
  
      var extendedlabel = new ExtendedLabel({
          flexGrow: 1
-     }); 
+     });
 
      if (System.OS === "iOS") {
          extendedlabel.letterSpacing = 5;
@@ -61,12 +63,25 @@ var Page1 = extend(Page)(
      
      extendedlabel.text = [attributeString,attributeString2,attributeString3];
 
-    this.layout.addChild(extendedlabel);
+     this.layout.addChild(extendedlabel);
     
     }
 );
 module.exports = Page1;
 ```
+### Create From Existing Label
+```javascript
+var extendedlabel = ExtendedLabel.createFromLabel(label);
 
+var attributeString = new AttributedString();
+attributeString.string = "Text";
+attributeString.link = "Text Link";
+attributeString.backgroundColor = Color.RED;
+attributeString.underline = true;
+attributeString.font = Font.create("Times New Roman",30,Font.NORMAL);
+attributeString.ios.underlineColor = Color.YELLOW;
+
+extendedlabel.text = [attributeString];
+```
 ## License
 This project is licensed under the terms of the MIT license. See the [LICENSE](https://raw.githubusercontent.com/smartface/sf-extension-extendedlabel/master/LICENSE) file. Within the scope of this license, all modifications to the source code, regardless of the fact that it is used commercially or not, shall be committed as a contribution back to this repository.
