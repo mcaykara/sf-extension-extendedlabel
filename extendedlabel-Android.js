@@ -134,4 +134,16 @@ const ExtendedLabel = extend(Label)(
         }
     }
 );
+
+ExtendedLabel.createFromLabel = function(value) {
+    if (value instanceof Label) {
+        var result = new ExtendedLabel();
+        result.nativeObject = value.nativeObject;
+        return result;
+    }
+    else {
+        throw new Error("Given parameter should be an instance of Label.");
+    }
+};
+
 module.exports = ExtendedLabel;

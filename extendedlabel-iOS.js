@@ -25,7 +25,9 @@ const ExtendedLabel = extend(Label)(
             },
             set: function(value) {
                 _text = value;
-                setText(value);
+                if (Array.isArray(value)) {
+                    setText(value);
+                }
             },
             enumerable: true,
             configurable: true
@@ -64,7 +66,7 @@ const ExtendedLabel = extend(Label)(
         function setText(value){
             var alloc = Invocation.invokeClassMethod("NSMutableAttributedString","alloc",[],"id");
             var mutableString = Invocation.invokeInstanceMethod(alloc,"init",[],"NSObject");
-            
+
             for (var i in value) {
                 var attributeString = value[i];
                 
@@ -96,11 +98,12 @@ const ExtendedLabel = extend(Label)(
                     });
                 Invocation.invokeInstanceMethod(mutableString,"appendAttributedString:",[argAppend]);
             }
-            
+
             var argAttributeString = new Invocation.Argument({
                 type:"NSObject",
                 value: mutableString
             });
+            
             Invocation.invokeInstanceMethod(self.nativeObject,"setAttributedText:",[argAttributeString]);
             self.textAlignment = self.textAlignment;
         };
@@ -112,5 +115,41 @@ const ExtendedLabel = extend(Label)(
         }
     }
 );
+
+ExtendedLabel.createFromLabel = function(value){
+    var extendedlabel = new ExtendedLabel();
+    for(var k in value) {
+        if (k === "nativeObject" || k === "htmlText" || k === "text") {
+            continue;
+        }else if (k === "ios"){
+            for(var j in value[k]) {
+                extendedlabel[k][j]=value[k][j];
+            }
+            continue;
+        }
+        extendedlabel[k]=value[k];
+    }
+    
+    extendedlabel.top = value.nativeObject.yoga.getYGValueForKey("top");
+    extendedlabel.left = value.nativeObject.yoga.getYGValueForKey("left");
+    extendedlabel.width = value.nativeObject.yoga.getYGValueForKey("width");
+    extendedlabel.height = value.nativeObject.yoga.getYGValueForKey("height");
+    
+    if (value.nativeObject.superview) {
+        var argInsertSubview = new Invocation.Argument({
+            type:"NSObject",
+            value: extendedlabel.nativeObject
+        });
+        var argBelowSubview = new Invocation.Argument({
+            type:"NSObject",
+            value: value.nativeObject
+        });
+        Invocation.invokeInstanceMethod(value.nativeObject.superview,"insertSubview:belowSubview:",[argInsertSubview,argBelowSubview]);
+        
+        value.nativeObject.removeFromSuperview();
+    }
+    
+    return extendedlabel;
+}
 
 module.exports = ExtendedLabel;

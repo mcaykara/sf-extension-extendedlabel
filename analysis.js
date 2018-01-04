@@ -91,6 +91,23 @@ ExtendedLabel.prototype.onClick = function(e) {};
 ExtendedLabel.prototype.letterSpacing = 0;
 
 /**
+ * @method createFromLabel
+ * @android
+ * @ios
+ * Creates an extendedLabel instance with exist label.
+ *
+ *     @example
+ *     const ExtendedLabel = require('sf-extension-extendedlabel');
+ *     var extendedlabel = ExtendedLabel.createFromLabel(label);
+ *
+ * @param {UI.Label} Label instance
+ * @return {ExtendedLabel} An ExtendedLabel instance.
+ *
+ * @static
+ */
+ExtendedLabel.createFromLabel = function(label) { }
+
+/**
  * @class AttributedString
  *
  *      @example
