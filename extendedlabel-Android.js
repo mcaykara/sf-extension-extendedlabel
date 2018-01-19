@@ -1,5 +1,6 @@
 const extend = require('js-base/core/extend');
 const Label = require('sf-core/ui/label');
+const NativeBuild = requireClass("android.os.Build");
 const NativeSpannableString = requireClass("android.text.SpannableString");
 const NativeColor = requireClass("android.graphics.Color");
 const NativeLinkMovementMethod = requireClass("android.text.method.LinkMovementMethod");
@@ -58,7 +59,10 @@ const ExtendedLabel = extend(Label)(
             },
             set: function(value) {
                 _letterSpacing = value;
-                self.nativeObject.setLetterSpacing(value);
+                if(NativeBuild.VERSION.SDK_INT >= 21) {                
+                    self.nativeObject.setLetterSpacing(value);
+                    
+                }
             },
             enumerable: true,
             configurable: true
