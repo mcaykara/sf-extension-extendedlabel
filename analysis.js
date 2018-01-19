@@ -1,5 +1,4 @@
-const View = require('../view');
-const extend = require('js-base/core/extend');
+/*globals Color */
 
 /**
  * @class UI.ExtendedLabel
@@ -105,7 +104,7 @@ ExtendedLabel.prototype.letterSpacing = 0;
  *
  * @static
  */
-ExtendedLabel.createFromLabel = function(label) { }
+ExtendedLabel.createFromLabel = function(label) {};
 
 /**
  * @class AttributedString
@@ -186,6 +185,6 @@ AttributedString.prototype.backgroundColor = Color.WHITE;
 AttributedString.prototype.link = undefined;
 
 module.exports = {
-    ExtendedLabel : ExtendedLabel,
-    AttributedString : AttributedString
-}
+    ExtendedLabel: ExtendedLabel,
+    AttributedString: AttributedString
+};
