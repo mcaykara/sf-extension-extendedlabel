@@ -36,6 +36,7 @@ var Page1 = extend(Page)(
      if (System.OS === "iOS") {
          extendedlabel.letterSpacing = 5;
      }else{
+         // letterSpacing working on ANDROID Lollipop (API-21) AND UPPER
          extendedlabel.letterSpacing = 0.3;
      }
       
