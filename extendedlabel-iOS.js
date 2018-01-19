@@ -1,3 +1,4 @@
+/* globals __SF_ExtendedTextView */
 const extend = require('js-base/core/extend');
 const Label = require('sf-core/ui/label');
 const Invocation    = require('sf-core/util').Invocation;
@@ -7,7 +8,8 @@ const NSUnderlineStyle = {
     Single : 1,
     Thick : 2,
     Double : 9
-}
+};
+
 const ExtendedLabel = extend(Label)(
     function (_super, params) {
         var self = this;
@@ -106,7 +108,7 @@ const ExtendedLabel = extend(Label)(
             
             Invocation.invokeInstanceMethod(self.nativeObject,"setAttributedText:",[argAttributeString]);
             self.textAlignment = self.textAlignment;
-        };
+        }
         
         if (params) {
             for (var param in params) {
@@ -150,6 +152,6 @@ ExtendedLabel.createFromLabel = function(value){
     }
     
     return extendedlabel;
-}
+};
 
 module.exports = ExtendedLabel;

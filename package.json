@@ -1,17 +1,26 @@
 {
   "name": "sf-extension-extendedlabel",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "ExtendedLabel is a view attributedtext on the screen.",
   "main": "index.js",
-  "keywords": ["smartface", "extendedlabel", "javascript"],
+  "keywords": [
+    "smartface",
+    "extendedlabel",
+    "javascript"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": {
-    "name": "Smartface",
-    "email": "info@smartface.io",
-    "url": "http://smartface.io"
+  "author": "Smartface <info@smartface.io> (http://smartface.io)",
+  "license": "MIT",
+  "homepage": "http://bitbucket.org/smartface-team/sf-plugins#readme",
+  "dependencies": {},
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/smartface/sf-extension-extendedlabel.git"
   },
-  "license": "ISC",
-  "homepage": "http://bitbucket.org/smartface-team/sf-plugins#readme"
+  "bugs": {
+    "url": "https://github.com/smartface/sf-extension-extendedlabel/issues"
+  }
 }
