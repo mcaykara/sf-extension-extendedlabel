@@ -5,7 +5,7 @@
 ## Installation
 Smartface Extendedlabel can be installed via npm easily from our public npm repository. The installation is pretty easy via Smartface Cloud IDE.
 
-- Run command `(cd ~/workspace/scripts && npm i -S sf-extension-extendedlabel`
+- Run command `(cd ~/workspace/scripts && npm i -S sf-extension-extendedlabel)`
 
 ## How to use
 
