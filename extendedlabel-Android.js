@@ -1,6 +1,7 @@
+/*globals requireClass */
 const extend = require('js-base/core/extend');
 const Label = require('sf-core/ui/label');
-const NativeSpannableString = requireClass("android.text.SpannableString");
+// const NativeSpannableString = requireClass("android.text.SpannableString");
 const NativeColor = requireClass("android.graphics.Color");
 const NativeLinkMovementMethod = requireClass("android.text.method.LinkMovementMethod");
 const NativeSpannableStringBuilder = requireClass("android.text.SpannableStringBuilder");
@@ -10,7 +11,7 @@ const NativeForegroundColorSpan = requireClass("android.text.style.ForegroundCol
 const NativeAbsoluteSizeSpan = requireClass("android.text.style.AbsoluteSizeSpan");
 const NativeUnderlineSpan = requireClass("android.text.style.UnderlineSpan");
 const NativeTypefaceSpan = requireClass("android.text.style.TypefaceSpan");
-const NativeScaleXSpan = requireClass("android.text.style.ScaleXSpan");
+// const NativeScaleXSpan = requireClass("android.text.style.ScaleXSpan");
 const NativeTypeface = requireClass("android.graphics.Typeface");
 var SPAN_EXCLUSIVE_EXCLUSIVE = 33;
 const ExtendedLabel = extend(Label)(

@@ -1,5 +1,5 @@
-if (Device.deviceOS === "iOS") {
+if (global.Device.deviceOS === "iOS") {
   module.exports = require('./extendedlabel-iOS');
-} else if (Device.deviceOS === "Android") {
+} else if (global.Device.deviceOS === "Android") {
   module.exports = require('./extendedlabel-Android');
 }
