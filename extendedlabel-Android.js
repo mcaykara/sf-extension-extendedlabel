@@ -2,7 +2,6 @@
 const extend = require('js-base/core/extend');
 const Label = require('sf-core/ui/label');
 const NativeBuild = requireClass("android.os.Build");
-const NativeSpannableString = requireClass("android.text.SpannableString");
 const NativeColor = requireClass("android.graphics.Color");
 const NativeLinkMovementMethod = requireClass("android.text.method.LinkMovementMethod");
 const NativeSpannableStringBuilder = requireClass("android.text.SpannableStringBuilder");
@@ -34,9 +33,10 @@ const ExtendedLabel = extend(Label)(
                     for (var i = 0; i < _spanArray.length; i++) {
                         createSpannyText(_spanArray[i]);
                     }
+                    self.nativeObject.setText(self.myBuilder);
+                    self.nativeObject.setSingleLine(false);
                     self.nativeObject.setMovementMethod(NativeLinkMovementMethod.getInstance());
                     self.nativeObject.setHighlightColor(NativeColor.TRANSPARENT);
-                    self.nativeObject.setText(self.myBuilder);
                 },
                 enumerable: true,
                 configurable: true
