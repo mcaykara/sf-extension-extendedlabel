@@ -92,11 +92,6 @@ const ExtendedLabel = extend(Label)(
             // Background Color 
             // --------------------------------------------------------------------------------
             self.myBuilder.setSpan(new NativeBackgroundColorSpan(value.backgroundColor.nativeObject), start, end, SPAN_EXCLUSIVE_EXCLUSIVE);
-            // Underline 
-            // --------------------------------------------------------------------------------
-            if (value.underline === true) {
-                self.myBuilder.setSpan(new NativeUnderlineSpan(), start, end, SPAN_EXCLUSIVE_EXCLUSIVE);
-            }
             // Font
             // --------------------------------------------------------------------------------
             var newType = value.font.nativeObject;
@@ -113,6 +108,11 @@ const ExtendedLabel = extend(Label)(
             // Size
             // --------------------------------------------------------------------------------
             self.myBuilder.setSpan(new NativeAbsoluteSizeSpan(value.font.size, true), start, end, SPAN_EXCLUSIVE_EXCLUSIVE);
+            // Underline 
+            // --------------------------------------------------------------------------------
+            if (value.underline === true) {
+                self.myBuilder.setSpan(new NativeUnderlineSpan(), start, end, SPAN_EXCLUSIVE_EXCLUSIVE);
+            }
         }
         function applyCustomTypeFace(paint, tf) {
             var oldStyle;
