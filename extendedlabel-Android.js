@@ -1,6 +1,7 @@
 /*globals requireClass */
 const extend = require('js-base/core/extend');
 const Label = require('sf-core/ui/label');
+const unitconverter = require('sf-core/util/Android/unitconverter');
 const NativeBuild = requireClass("android.os.Build");
 const NativeColor = requireClass("android.graphics.Color");
 const NativeLinkMovementMethod = requireClass("android.text.method.LinkMovementMethod");
@@ -11,6 +12,7 @@ const NativeForegroundColorSpan = requireClass("android.text.style.ForegroundCol
 const NativeAbsoluteSizeSpan = requireClass("android.text.style.AbsoluteSizeSpan");
 const NativeUnderlineSpan = requireClass("android.text.style.UnderlineSpan");
 const NativeTypefaceSpan = requireClass("android.text.style.TypefaceSpan");
+const NativeLineHeightSpan = requireClass("android.text.style.LineHeightSpan");
 // const NativeScaleXSpan = requireClass("android.text.style.ScaleXSpan");
 const NativeTypeface = requireClass("android.graphics.Typeface");
 var SPAN_EXCLUSIVE_EXCLUSIVE = 33;
@@ -33,6 +35,8 @@ const ExtendedLabel = extend(Label)(
                     for (var i = 0; i < _spanArray.length; i++) {
                         createSpannyText(_spanArray[i]);
                     }
+
+                    lineSpacing();
                     self.nativeObject.setText(self.myBuilder);
                     self.nativeObject.setSingleLine(false);
                     self.nativeObject.setMovementMethod(NativeLinkMovementMethod.getInstance());
@@ -60,14 +64,39 @@ const ExtendedLabel = extend(Label)(
             },
             set: function(value) {
                 _letterSpacing = value;
-                if(NativeBuild.VERSION.SDK_INT >= 21) {                
+                if (NativeBuild.VERSION.SDK_INT >= 21) {
                     self.nativeObject.setLetterSpacing(value);
-                    
+
                 }
             },
             enumerable: true,
             configurable: true
         });
+
+        var _lineSpacing = 0;
+        Object.defineProperty(self, 'lineSpacing', {
+            get: function() {
+                return _lineSpacing;
+            },
+            set: function(value) {
+                _lineSpacing = value;
+            },
+            enumerable: true,
+            configurable: true
+        });
+
+        function lineSpacing() {
+            if (_lineSpacing != 0) {
+                var lineSpan = NativeLineHeightSpan.implement({
+                    chooseHeight: function(text, start, end, spanstartv, v, fm) {
+                        fm.bottom += unitconverter.dpToPixel(_lineSpacing);
+                        fm.descent += unitconverter.dpToPixel(_lineSpacing);
+                    }
+                });
+                self.myBuilder.setSpan(lineSpan, 0, self.myBuilder.length(), SPAN_EXCLUSIVE_EXCLUSIVE);
+            }
+        }
+
         function createSpannyText(value) {
             self.myBuilder.append(value.string);
             var start = self.myBuilder.length() - value.string.length;
@@ -114,6 +143,7 @@ const ExtendedLabel = extend(Label)(
                 self.myBuilder.setSpan(new NativeUnderlineSpan(), start, end, SPAN_EXCLUSIVE_EXCLUSIVE);
             }
         }
+
         function applyCustomTypeFace(paint, tf) {
             var oldStyle;
             var old = paint.getTypeface();
