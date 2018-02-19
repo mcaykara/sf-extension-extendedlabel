@@ -38,6 +38,7 @@ var Page1 = extend(Page)(
      }else{
          // letterSpacing working on ANDROID Lollipop (API-21) AND UPPER
          extendedlabel.letterSpacing = 0.3;
+         extendedlabel.lineSpacing = 20; // dp value
      }
       
      extendedlabel.onClick = function(string){
