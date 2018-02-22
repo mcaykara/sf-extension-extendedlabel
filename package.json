@@ -1,6 +1,6 @@
 {
   "name": "sf-extension-extendedlabel",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "ExtendedLabel is a view attributedtext on the screen.",
   "main": "index.js",
   "keywords": [
