@@ -31,7 +31,7 @@ var Page1 = extend(Page)(
  
      var extendedlabel = new ExtendedLabel({
          flexGrow: 1,
-         extendedlabel.lineSpacing : 20
+         lineSpacing : 20
      });
 
      if (System.OS === "iOS") {
