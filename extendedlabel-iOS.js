@@ -65,7 +65,27 @@ const ExtendedLabel = extend(Label)(
             }
         };
         
+        var _lineSpacing = 0;
+        Object.defineProperty(self, 'lineSpacing', {
+            get: function() {
+                return _lineSpacing;
+            },
+            set: function(value) {
+                _lineSpacing = value;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        
         function setText(value){
+            var paragraphAlloc = Invocation.invokeClassMethod("NSMutableParagraphStyle","alloc",[],"id");
+            var paragraphStyle = Invocation.invokeInstanceMethod(paragraphAlloc,"init",[],"NSObject");
+            var argLineSpacing = new Invocation.Argument({
+                type:"CGFloat",
+                value: self.lineSpacing
+            });
+            Invocation.invokeInstanceMethod(paragraphStyle,"setLineSpacing:",[argLineSpacing]);
+
             var alloc = Invocation.invokeClassMethod("NSMutableAttributedString","alloc",[],"id");
             var mutableString = Invocation.invokeInstanceMethod(alloc,"init",[],"NSObject");
 
@@ -88,11 +108,11 @@ const ExtendedLabel = extend(Label)(
                         "NSLink": attributeString.link,
                         "NSBackgroundColor" : attributeString.backgroundColor.nativeObject,
                         "NSUnderlineColor" : attributeString.ios.underlineColor.nativeObject,
-                        "NSKern" : self.letterSpacing
+                        "NSKern" : self.letterSpacing,
+                        "NSParagraphStyle" : paragraphStyle
                     }
                 });
                 var nativeAttributeString = Invocation.invokeInstanceMethod(allocNSAttributedString,"initWithString:attributes:",[argString,argAttributes],"NSObject");
-                
                 
                 var argAppend = new Invocation.Argument({
                         type:"NSObject",

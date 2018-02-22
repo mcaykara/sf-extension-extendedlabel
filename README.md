@@ -30,7 +30,8 @@ var Page1 = extend(Page)(
      const System = require('sf-core/device/system');
  
      var extendedlabel = new ExtendedLabel({
-         flexGrow: 1
+         flexGrow: 1,
+         extendedlabel.lineSpacing : 20
      });
 
      if (System.OS === "iOS") {
@@ -38,7 +39,6 @@ var Page1 = extend(Page)(
      }else{
          // letterSpacing working on ANDROID Lollipop (API-21) AND UPPER
          extendedlabel.letterSpacing = 0.3;
-         extendedlabel.lineSpacing = 20; // dp value
      }
       
      extendedlabel.onClick = function(string){

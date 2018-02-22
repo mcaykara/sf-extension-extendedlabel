@@ -86,15 +86,13 @@ const ExtendedLabel = extend(Label)(
         });
 
         function lineSpacing() {
-            if (_lineSpacing != 0) {
-                var lineSpan = NativeLineHeightSpan.implement({
-                    chooseHeight: function(text, start, end, spanstartv, v, fm) {
-                        fm.bottom += unitconverter.dpToPixel(_lineSpacing);
-                        fm.descent += unitconverter.dpToPixel(_lineSpacing);
-                    }
-                });
-                self.myBuilder.setSpan(lineSpan, 0, self.myBuilder.length(), SPAN_EXCLUSIVE_EXCLUSIVE);
-            }
+            var lineSpan = NativeLineHeightSpan.implement({
+                chooseHeight: function(text, start, end, spanstartv, v, fm) {
+                    fm.bottom += unitconverter.dpToPixel(_lineSpacing);
+                    fm.descent += unitconverter.dpToPixel(_lineSpacing);
+                }
+            });
+            self.myBuilder.setSpan(lineSpan, 0, self.myBuilder.length(), SPAN_EXCLUSIVE_EXCLUSIVE);
         }
 
         function createSpannyText(value) {
