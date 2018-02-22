@@ -46,7 +46,7 @@ var Page1 = extend(Page)(
      };
      
      var attributeString = new AttributedString();
-     attributeString.string = "First ";
+     attributeString.string = "First\n";
      attributeString.foregroundColor = Color.GREEN;
      
      var attributeString2 = new AttributedString();

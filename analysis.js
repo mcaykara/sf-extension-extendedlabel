@@ -90,6 +90,15 @@ ExtendedLabel.prototype.onClick = function(e) {};
 ExtendedLabel.prototype.letterSpacing = 0;
 
 /**
+ * Gets/sets lineSpacing on ExtendedLabel.
+ * 
+ * @property {Number} [letterSpacing = 0]
+ * @android
+ * @ios
+ */
+ExtendedLabel.prototype.lineSpacing = 0;
+
+/**
  * @method createFromLabel
  * @android
  * @ios
