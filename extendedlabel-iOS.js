@@ -2,6 +2,7 @@
 const extend = require('js-base/core/extend');
 const Label = require('sf-core/ui/label');
 const Invocation    = require('sf-core/util').Invocation;
+const AttributedString = require('sf-extension-extendedlabel/attributedstring');
 
 const NSUnderlineStyle = {
     None : 0,
@@ -54,6 +55,7 @@ const ExtendedLabel = extend(Label)(
             },
             set: function(value) {
                 _letterSpacing = value;
+                self.text = self.text;
             },
             enumerable: true,
             configurable: true
@@ -72,6 +74,7 @@ const ExtendedLabel = extend(Label)(
             },
             set: function(value) {
                 _lineSpacing = value;
+                self.text = self.text;
             },
             enumerable: true,
             configurable: true
@@ -151,6 +154,10 @@ ExtendedLabel.createFromLabel = function(value){
         }
         extendedlabel[k]=value[k];
     }
+    
+    var attributeString = new AttributedString();
+    attributeString.string = value.text;
+    extendedlabel.text = [attributeString];
     
     extendedlabel.top = value.nativeObject.yoga.getYGValueForKey("top");
     extendedlabel.left = value.nativeObject.yoga.getYGValueForKey("left");
